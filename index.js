@@ -29,6 +29,7 @@ app.post('/auth/register', registerValidation, UserController.register);
 app.get('/auth/me', checkAuth, UserController.getMe);
 
 app.get('/items', ItemController.getItems);
+app.get('/paginatedItems', ItemController.getPaginatedItems);
 app.get('/items/:id', ItemController.getOne);
 
 app.listen(PORT, (err) => {
