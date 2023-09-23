@@ -1,1 +1,2 @@
-GET http://localhost:3333/paginatedItems?page=4&limit=5
+GET http://localhost:3333/getFilteredItems?q=&c=all&sort=&page=1&limit=8
+

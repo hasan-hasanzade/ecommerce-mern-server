@@ -29,7 +29,11 @@ app.post('/auth/register', registerValidation, UserController.register);
 app.get('/auth/me', checkAuth, UserController.getMe);
 
 app.get('/items', ItemController.getItems);
-app.get('/paginatedItems', ItemController.getPaginatedItems);
+// app.get('/paginatedItems', ItemController.getPaginatedItems);
+// app.get('/search', ItemController.getSearchedItems);
+// app.get('/category', ItemController.getCategoryItems);
+// app.get('/sort', ItemController.getSortedItems);
+app.get('/getFilteredItems', ItemController.getFilteredItems);
 app.get('/items/:id', ItemController.getOne);
 
 app.listen(PORT, (err) => {
