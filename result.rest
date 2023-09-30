@@ -1,2 +1,0 @@
-GET http://localhost:3333/getFilteredItems?q=&c=all&sort=&page=1&limit=8
-
