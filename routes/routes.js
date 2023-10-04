@@ -1,7 +1,7 @@
 import express from 'express';
 import { registerValidation, loginValidation } from '../validations.js';
 import { checkAuth, handleValidationErrors } from '../middleware/index.js';
-import { UserController, ItemController, BlogController } from '../controllers/index.js';
+import { UserController, ItemController, BlogController, CommentController } from '../controllers/index.js';
 import { upload } from '../middleware/multer.js';
 
 import jwt from 'jsonwebtoken';
@@ -68,6 +68,9 @@ router.get('/items/:id', ItemController.getOne);
 
 router.get('/blogs', BlogController.getBlogs);
 router.get('/blogs/:id', BlogController.getOneBlog);
+
+router.get('/comments', CommentController.getComments);
+router.post('/comment/post', checkAuth, CommentController.postComment);
 
 
 export default router;

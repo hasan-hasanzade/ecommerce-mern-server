@@ -15,6 +15,10 @@ const UserSchema = new mongoose.Schema({
       required: true
    },
    avatarUrl: "String",
+   comments: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment' // Reference to the Comment model
+   }]
 }, {
    timestamps: true,
    },

@@ -1,12 +1,17 @@
-import mongoose from "mongoose"
+import mongoose from 'mongoose';
 
-const ItemSchema = new mongoose.Schema({
-   title: String,
-   category: String,
-   newPrice: Number,
-   oldPrice: Number,
-   rating: Number,
-   imageUrl: String,
-})
+const ItemSchema = new mongoose.Schema(
+  {
+    title: String,
+    category: String,
+    newPrice: Number,
+    oldPrice: Number,
+    rating: Number,
+    imageUrl: String,
+  },
+  {
+    timestamps: true,
+  },
+);
 
-export default mongoose.model("items", ItemSchema);
+export default mongoose.model('items', ItemSchema);
