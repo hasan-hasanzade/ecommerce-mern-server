@@ -1,19 +1,22 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import routes from './routes/routes.js';
-
 import cors from 'cors';
+import 'dotenv/config'
 
 const app = express();
 
-const PORT = 3333;
+// const PORT = 3333;
 
-app.listen(PORT, () => {
+const DB = process.env.MONGODB_CONNECT_URI;
+const port = process.env.PORT;
+
+app.listen(port, () => {
   console.log('Server OK');
 });
 
 mongoose
-  .connect('mongodb+srv://hasanzadeweb:Hesenov433@cluster0.3rh2cen.mongodb.net/ecom')
+  .connect(DB)
   .then(() => {
     console.log('DB OK');
   })

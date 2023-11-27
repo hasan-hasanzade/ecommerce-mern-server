@@ -1,7 +1,12 @@
 import express from 'express';
 import { registerValidation, loginValidation } from '../validations.js';
 import { checkAuth, handleValidationErrors } from '../middleware/index.js';
-import { UserController, ItemController, BlogController, CommentController } from '../controllers/index.js';
+import {
+  UserController,
+  ItemController,
+  BlogController,
+  CommentController,
+} from '../controllers/index.js';
 import { upload } from '../middleware/multer.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
@@ -28,10 +33,12 @@ router.post('/auth/register', registerValidation, handleValidationErrors, async 
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
 
+    let avatarUrl = req.body.userImageUrl || '';
+
     const doc = new UserModel({
       email: req.body.email,
       fullName: req.body.fullName,
-      avatarUrl: imageUrl,
+      avatarUrl: avatarUrl, // Используем avatarUrl, который мог быть пустым.
       passwordHash: hash,
     });
 
@@ -63,7 +70,7 @@ router.post('/auth/register', registerValidation, handleValidationErrors, async 
 
 router.get('/items', ItemController.getItems);
 router.get('/getFilteredItems', ItemController.getFilteredItems);
-router.get('/items/:id', ItemController.getOne);
+router.get('/shop/:id', ItemController.getOne);
 
 router.get('/blogs', BlogController.getBlogs);
 router.get('/blogs/:id', BlogController.getOneBlog);
