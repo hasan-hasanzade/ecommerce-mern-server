@@ -9,7 +9,7 @@ const app = express();
 // const PORT = 3333;
 
 const DB = process.env.MONGODB_CONNECT_URI;
-const port = process.env.PORT;
+const port = process.env.PORT || 3333;
 
 app.listen(port, () => {
   console.log('Server OK');
