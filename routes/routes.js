@@ -27,6 +27,32 @@ router.post('/upload', upload.single('image'), (req, res) => {
   });
 });
 
+router.delete('/deleteImage', async (req, res) => {
+  try {
+    if (!imageUrl) {
+      return res.status(404).json({
+        message: 'Image not found',
+      });
+    }
+
+    // Add logic to delete the image on the server
+    const imagePath = path.join(__dirname, '..', 'public', imageUrl);
+    await fs.unlink(imagePath);
+
+    // Clear the imageUrl variable
+    imageUrl = undefined;
+
+    res.json({
+      message: 'Image deleted successfully',
+    });
+  } catch (err) {
+    console.error('Failed to delete image:', err);
+    res.status(500).json({
+      message: 'Failed to delete image',
+    });
+  }
+});
+
 router.post('/auth/register', registerValidation, handleValidationErrors, async (req, res) => {
   try {
     const password = req.body.password;
