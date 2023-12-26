@@ -27,7 +27,7 @@ router.post('/upload', upload.single('image'), (req, res) => {
   });
 });
 
-router.delete('/deleteImage', async (req, res) => {
+router.delete('/deleteImage', checkAuth, async (req, res) => {
   try {
     if (!imageUrl) {
       return res.status(404).json({
@@ -35,8 +35,7 @@ router.delete('/deleteImage', async (req, res) => {
       });
     }
 
-    // Add logic to delete the image on the server
-    const imagePath = path.join(__dirname, '..', 'public', imageUrl);
+    const imagePath = path.join(__dirname, '..', 'uploads', path.basename(imageUrl));
     await fs.unlink(imagePath);
 
     // Clear the imageUrl variable
