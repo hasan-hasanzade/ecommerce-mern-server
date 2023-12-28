@@ -21,10 +21,17 @@ router.get('/auth/me', checkAuth, UserController.getMe);
 let imageUrl;
 
 router.post('/upload', upload.single('image'), (req, res) => {
-  imageUrl = `/uploads/${req.file?.originalname}`;
-  res.json({
-    url: imageUrl,
-  });
+  try {
+    imageUrl = `/uploads/${req.file?.originalname}`;
+    res.json({
+      url: imageUrl,
+    });
+  } catch (err) {
+    console.error('Failed to upload image:', err);
+    res.status(500).json({
+      message: 'Failed to upload image',
+    });
+  }
 });
 
 router.delete('/deleteImage', checkAuth, async (req, res) => {
