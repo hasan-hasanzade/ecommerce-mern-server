@@ -42,30 +42,23 @@ router.post('/upload', upload.single('image'), (req, res) => {
 });
 
 router.delete('/deleteImage', checkAuth, async (req, res) => {
-  try {
-    console.log('Attempting to delete image...');
-    
+  try { 
     if (!imageUrl) {
-      console.log('Image not found.');
       return res.status(404).json({
         message: 'Image not found',
       });
     }
 
     const imagePath = path.join(__dirname, '..', 'uploads', path.basename(imageUrl));
-    console.log('Deleting image at path:', imagePath);
 
     await fs.unlink(imagePath);
 
-    // Clear the imageUrl variable
     imageUrl = undefined;
 
-    console.log('Image deleted successfully.');
     res.json({
       message: 'Image deleted successfully',
     });
   } catch (err) {
-    console.error('Failed to delete image:', err);
     res.status(500).json({
       message: 'Failed to delete image',
     });
