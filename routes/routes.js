@@ -11,9 +11,14 @@ import { upload } from '../middleware/multer.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import UserModel from '../models/User.js';
-import path from 'path'
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 const router = express.Router();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 router.post('/auth/login', loginValidation, handleValidationErrors, UserController.login);
 
