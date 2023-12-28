@@ -14,6 +14,7 @@ import UserModel from '../models/User.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { promises as fs } from 'fs';
 
 const router = express.Router();
 
