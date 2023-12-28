@@ -11,6 +11,7 @@ import { upload } from '../middleware/multer.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import UserModel from '../models/User.js';
+import path from 'path'
 
 const router = express.Router();
 
