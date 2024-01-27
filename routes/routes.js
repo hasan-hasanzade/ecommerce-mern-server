@@ -41,8 +41,8 @@ router.post('/upload', upload.single('image'), (req, res) => {
   }
 });
 
-router.delete('/deleteImage', checkAuth, async (req, res) => {
-  try { 
+router.delete('/deleteImage', async (req, res) => {
+  try {
     if (!imageUrl) {
       return res.status(404).json({
         message: 'Image not found',
